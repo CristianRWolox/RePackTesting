@@ -1,0 +1,36 @@
+{
+  "name": "app3",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "webpack-start": "react-native webpack-start --port 9002",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "17.0.2",
+    "react-native": "0.66.4",
+    "react-native-paper": "^4.11.1",
+    "react-native-vector-icons": "^9.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@callstack/repack": "^2.5.1",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.3",
+    "eslint": "7.14.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-test-renderer": "17.0.2",
+    "terser-webpack-plugin": "^5.3.0",
+    "webpack": "^5.65.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
