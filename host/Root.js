@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AppRegistry, Text, Platform, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { ChunkManager } from '@callstack/repack/client';
 
 ChunkManager.configure({
@@ -39,6 +40,9 @@ ChunkManager.configure({
     }
   }
 })
+
+
+
 
 async function loadComponent(scope, module) {
   // Initializes the share scope. This fills it with known provided modules from this build and all remotes
@@ -83,13 +87,25 @@ function WbooksWrapper() {
   );
 }
 
+const Drawer = createDrawerNavigator();
+
 function App3Wrapper() {
   return (
     <React.Suspense fallback={<Text style={{ textAlign: 'center' }}>Loading...</Text>}>
-      <App3 />
+      <App3 Drawer={Drawer} />
     </React.Suspense>
   );
 }
+
+
+
+// function MyDrawer() {
+//   return (
+//     <Drawer.Navigator>
+//       <Drawer.Screen name="Feed" component={App3Wrapper} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 const Tab = createBottomTabNavigator();
 
