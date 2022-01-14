@@ -3,6 +3,7 @@ import { AppRegistry, Text, Platform, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
 import { ChunkManager } from '@callstack/repack/client';
 
 ChunkManager.configure({
@@ -20,6 +21,9 @@ ChunkManager.configure({
       case 'app3':
         url = `http://localhost:9002/${chunkId}.chunk.bundle`
         break;
+      case 'login':
+        url = `http://localhost:9004/${chunkId}.chunk.bundle`
+        break;
       case 'main':
       default:
         url = {
@@ -27,6 +31,7 @@ ChunkManager.configure({
           app1: 'http://localhost:9000/app1.container.bundle',
           // wbooks: 'http://localhost:9001/wbooks.container.bundle',
           app3: 'http://localhost:9002/app3.container.bundle',
+          login: 'http://localhost:9004/login.container.bundle',
         }[chunkId] ?? `http://localhost:8081/${chunkId}.chunk.bundle`
         break;
     }
@@ -71,6 +76,10 @@ const App3 = React.lazy(
   () => loadComponent('app3', './App.js')
 );
 
+const Login = React.lazy(
+  () => loadComponent('login', './App.js')
+);
+
 function App1Wrapper() {
   return (
     <React.Suspense fallback={<Text style={{ textAlign: 'center' }}>Loading...</Text>}>
@@ -97,6 +106,13 @@ function App3Wrapper() {
   );
 }
 
+function LoginWrapper() {
+  return (
+    <React.Suspense fallback={<Text style={{ textAlign: 'center' }}>Loading...</Text>}>
+      <Login />
+    </React.Suspense>
+  );
+}
 
 
 // function MyDrawer() {
@@ -108,15 +124,16 @@ function App3Wrapper() {
 // }
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export function Root() {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="App1">
-        <Tab.Screen name="App1" component={App1Wrapper} />
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginWrapper} />
         {/* <Tab.Screen name="Wbooks" component={Wbooks} /> */}
-        <Tab.Screen name="App3" component={App3Wrapper} />
-      </Tab.Navigator>
+        <Stack.Screen name="App3" component={App3Wrapper} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
