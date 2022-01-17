@@ -40,6 +40,7 @@ ChunkManager.configure({
 });
 
 export function Root() {
+  // TODO: change this when add redux
   const currentUser = false;
   return (
     <NavigationContainer>
