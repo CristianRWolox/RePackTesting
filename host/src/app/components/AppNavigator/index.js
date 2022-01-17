@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppRegistry, Text, Platform, View } from 'react-native';
+import { Text } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ChunkManager } from '@callstack/repack/client';
@@ -69,15 +69,6 @@ function LoginWrapper() {
     </React.Suspense>
   );
 }
-
-
-// function MyDrawer() {
-//   return (
-//     <Drawer.Navigator>
-//       <Drawer.Screen name="Feed" component={App3Wrapper} />
-//     </Drawer.Navigator>
-//   );
-// }
 
 const AuthStack = createStackNavigator();
 const AppStack = createStackNavigator();

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppRegistry, Text, Platform, View } from 'react-native';
+import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { ChunkManager } from '@callstack/repack/client';
 
@@ -11,9 +11,6 @@ ChunkManager.configure({
     let url;
 
     switch (parentId) {
-      // case 'app1':
-      //   url = `http://localhost:9000/${chunkId}.chunk.bundle`
-      //   break;
       case 'wbooks':
         url = `http://localhost:9001/${chunkId}.chunk.bundle`
         break;
@@ -26,9 +23,6 @@ ChunkManager.configure({
       case 'main':
       default:
         url = {
-          // containers
-          // app1: 'http://localhost:9000/app1.container.bundle',
-          // wbooks: 'http://localhost:9001/wbooks.container.bundle',
           app3: 'http://localhost:9002/app3.container.bundle',
           login: 'http://localhost:9004/login.container.bundle',
         }[chunkId] ?? `http://localhost:8081/${chunkId}.chunk.bundle`
