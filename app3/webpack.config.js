@@ -307,7 +307,7 @@ module.exports = {
         type: 'self',
       },
       exposes: {
-        './App.js': './App.js',
+        './App.js': './src/app/webpackIndex.tsx',
       },
       shared: {
         react: {
