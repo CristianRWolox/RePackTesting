@@ -17,6 +17,9 @@ ChunkManager.configure({
       case 'app3':
         url = `http://localhost:9002/${chunkId}.chunk.bundle`
         break;
+      // case 'home':
+      //   url = `http://localhost:9002/${chunkId}.chunk.bundle`
+      //   break;
       case 'login':
         url = `http://localhost:9004/${chunkId}.chunk.bundle`
         break;
@@ -24,6 +27,7 @@ ChunkManager.configure({
       default:
         url = {
           app3: 'http://localhost:9002/app3.container.bundle',
+          // home: 'http://localhost:9002/app3.container.bundle',
           login: 'http://localhost:9004/login.container.bundle',
         }[chunkId] ?? `http://localhost:8081/${chunkId}.chunk.bundle`
         break;
@@ -41,7 +45,7 @@ ChunkManager.configure({
 
 export function Root() {
   // TODO: change this when add redux
-  const currentUser = false;
+  const currentUser = true;
   return (
     <NavigationContainer>
       {currentUser ? <AppNavigator /> : <AuthNavigator />}

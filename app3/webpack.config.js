@@ -308,6 +308,7 @@ module.exports = {
       },
       exposes: {
         './App.js': './src/app/webpackIndex.tsx',
+        './Home.js': './src/app/screens/Home',
       },
       shared: {
         react: {
