@@ -26,15 +26,21 @@ import Home from '@screens/Home';
 const Navigator = ({ HomeNavigator }: { HomeNavigator: any }) => {
   const HomeTabs = () => (
       <HomeNavigator.tab.Navigator {...tabNavConfig} >
-        {inferRoute(HomeNavigator.tab)(Routes.Tab1, Home)}
-        {inferRoute(HomeNavigator.tab)(Routes.Tab2, Home)}
+        <HomeNavigator.tab.Screen name={Routes.Tab1} component={Home} />
+        <HomeNavigator.tab.Screen name={Routes.Tab2} component={Home} />
       </HomeNavigator.tab.Navigator>
       );
     
   // const AppStack = () => (
   //    <>{inferRoute(HomeNavigator.stack)(Routes.Home,HomeTabs)}</>
   // );
-  return <HomeNavigator.stack.Navigator {...appStackNavConfig}>{HomeTabs()}</HomeNavigator.stack.Navigator>;
+  // return <HomeNavigator.stack.Navigator {...appStackNavConfig}>{HomeTabs}</HomeNavigator.stack.Navigator>;
+  return (
+    <HomeNavigator.tab.Navigator {...tabNavConfig} >
+      {inferRoute(HomeNavigator.tab)(Routes.Tab1, Home)}
+      {inferRoute(HomeNavigator.tab)(Routes.Tab2, Home)}
+    </HomeNavigator.tab.Navigator>
+  );
 };
 
 export default Navigator;
