@@ -23,12 +23,16 @@ ChunkManager.configure({
       case 'login':
         url = `http://${Config.BASE_URL_MODULE}:9004/${chunkId}.chunk.bundle`
         break;
+      case 'home':
+        url = `http://${Config.BASE_URL_MODULE}:9005/${chunkId}.chunk.bundle`
+        break;
       case 'main':
       default:
         url = {
           app3: `http://${Config.BASE_URL_MODULE}:9002/app3.container.bundle`,
           // home: 'http://localhost:9002/app3.container.bundle',
           login: `http://${Config.BASE_URL_MODULE}:9004/login.container.bundle`,
+          home: `http://${Config.BASE_URL_MODULE}:9005/home.container.bundle`,
         }[chunkId] ?? `http://${Config.BASE_URL_MODULE}:8081/${chunkId}.chunk.bundle`
         break;
     }

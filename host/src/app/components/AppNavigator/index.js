@@ -2,8 +2,14 @@ import * as React from 'react';
 import { Text } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ChunkManager } from '@callstack/repack/client';
 
+
+const Drawer = createDrawerNavigator();
+const AuthStack = createStackNavigator();
+const AppStack = createStackNavigator();
+const HomeNavigator = { stack: createStackNavigator(), tab: createBottomTabNavigator() };
 
 async function loadComponent(scope, module) {
   // Initializes the share scope. This fills it with known provided modules from this build and all remotes
@@ -33,7 +39,7 @@ const App3 = React.lazy(
 );
 
 const Home = React.lazy(
-  () => loadComponent('app3', './Home.js')
+  () => loadComponent('home', './App.js')
 );
 
 const Login = React.lazy(
@@ -51,7 +57,7 @@ function App1Wrapper() {
 function HomeWrapper() {
   return (
     <React.Suspense fallback={<Text style={{ textAlign: 'center' }}>Loading...</Text>}>
-      <Home />
+      <Home HomeNavigator={HomeNavigator} />
     </React.Suspense>
   );
 }
@@ -63,8 +69,6 @@ function WbooksWrapper() {
     </React.Suspense>
   );
 }
-
-const Drawer = createDrawerNavigator();
 
 function App3Wrapper() {
   return (
@@ -82,8 +86,7 @@ function LoginWrapper() {
   );
 }
 
-const AuthStack = createStackNavigator();
-const AppStack = createStackNavigator();
+
 
 export const AuthNavigator = () => (
   <AuthStack.Navigator>
@@ -92,7 +95,8 @@ export const AuthNavigator = () => (
 );
 
 export const AppNavigator = () => (
-  <AppStack.Navigator>
-    <AppStack.Screen name="App3" component={App3Wrapper} />
+  <AppStack.Navigator initialRouteName='Home'>
+    <AppStack.Screen name="Home" component={HomeWrapper} />
+    {/* <AppStack.Screen name="App3" component={App3Wrapper} /> */}
   </AppStack.Navigator>
 );
