@@ -32,6 +32,10 @@ const App3 = React.lazy(
   () => loadComponent('app3', './App.js')
 );
 
+const Home = React.lazy(
+  () => loadComponent('app3', './Home.js')
+);
+
 const Login = React.lazy(
   () => loadComponent('login', './App.js')
 );
@@ -40,6 +44,14 @@ function App1Wrapper() {
   return (
     <React.Suspense fallback={<Text style={{ textAlign: 'center' }}>Loading...</Text>}>
       <App1 />
+    </React.Suspense>
+  );
+}
+
+function HomeWrapper() {
+  return (
+    <React.Suspense fallback={<Text style={{ textAlign: 'center' }}>Loading...</Text>}>
+      <Home />
     </React.Suspense>
   );
 }
